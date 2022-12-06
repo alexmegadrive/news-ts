@@ -1,4 +1,7 @@
 class Loader {
+    baseLink:any;
+    options:any;
+
     constructor(baseLink, options) {
         this.baseLink = baseLink;
         this.options = options;

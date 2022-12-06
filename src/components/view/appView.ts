@@ -2,6 +2,9 @@ import News from './news/news';
 import Sources from './sources/sources';
 
 export class AppView {
+    news:any;
+    sources:any;
+    
     constructor() {
         this.news = new News();
         this.sources = new Sources();

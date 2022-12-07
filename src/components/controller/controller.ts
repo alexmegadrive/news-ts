@@ -1,4 +1,6 @@
 import AppLoader from './appLoader';
+import { AppView, INewsSourcesData, INewsSourceArchive } from '../view/appView';
+
 
 class AppController extends AppLoader {
     getSources(callback) {
@@ -10,15 +12,15 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e, callback) {
-        let target = e.target;
-        const newsContainer = e.currentTarget;
+    getNews(e:Event, callback) {
+        let target:EventTarget | null = e.target;
+        const newsContainer:EventTarget | null = e.currentTarget;
 
         while (target !== newsContainer) {
-            if (target.classList.contains('source__item')) {
-                const sourceId = target.getAttribute('data-source-id');
-                if (newsContainer.getAttribute('data-source') !== sourceId) {
-                    newsContainer.setAttribute('data-source', sourceId);
+            if (target instanceof Element && target.classList.contains('source__item')) {
+                const sourceId:string | null = target.getAttribute('data-source-id');
+                if (newsContainer instanceof Element && newsContainer.getAttribute('data-source') !== sourceId) {
+                    if (sourceId) newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
                             endpoint: 'everything',
@@ -31,7 +33,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = target.parentNode;
+           if (target && target instanceof Element) target = target.parentNode;
         }
     }
 }

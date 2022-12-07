@@ -1,20 +1,25 @@
 import './sources.css';
 
+interface INewsSourceItem {
+    [key: string]: string;
+}
+
 class Sources {
-    draw(data) {
+    draw(data: Array<INewsSourceItem>) {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp:any = document.querySelector('#sourceItemTemp');
-
-        data.forEach((item) => {
-            const sourceClone:any = sourceItemTemp.content.cloneNode(true) ;
-
-            sourceClone.querySelector('.source__item-name').textContent = item.name;
-            sourceClone.querySelector('.source__item').setAttribute('data-source-id', item.id);
-
-            fragment.append(sourceClone);
+        const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
+        const sourcesContainer =  document.querySelector('.sources') as HTMLElement;
+        data.forEach((item: INewsSourceItem): void => {
+            const sourceClone = sourceItemTemp.content.cloneNode(true) as HTMLElement;
+            let itemName = sourceClone.querySelector('.source__item-name') as HTMLElement;
+            let itemEl = sourceClone.querySelector('.source__item') as HTMLElement;
+            if (sourceClone && itemName && itemEl) {
+                itemName.textContent = item.name;
+                itemEl.setAttribute('data-source-id', item.id);
+                fragment.append(sourceClone);
+            } else throw new Error('SourceClone error');
         });
-
-        document.querySelector('.sources')!.append(fragment);
+        if (sourcesContainer) sourcesContainer.append(fragment);
     }
 }
 

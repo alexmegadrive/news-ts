@@ -5,12 +5,12 @@ import { INewsSourceArchive, INewsArticle } from '../appView';
 
 class News {
   draw(data: Array<INewsArticle>) {
-    const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+    const news = data.length >= 10 ? data.filter((_item:INewsArticle, idx:number) => idx < 10) : data;
 
     const fragment = document.createDocumentFragment();
     const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
-    news.forEach((item, idx) => {
+    news.forEach((item:INewsArticle, idx:number) => {
       const newsClone = newsItemTemp.content.cloneNode(true) as HTMLElement;
       const newsItem = newsClone.querySelector('.news__item') as HTMLElement;
       const newsMetaPhoto = newsClone.querySelector('.news__meta-photo') as HTMLElement;

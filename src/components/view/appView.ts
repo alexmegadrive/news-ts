@@ -73,7 +73,7 @@ export class AppView {
   }
 
   public drawSources(data: INewsSourcesData | undefined) {
-  console.log('data :', data);
+    console.log('data :', data);
     const values = data?.sources ? data?.sources : [];
     this.sources.draw(values);
   }

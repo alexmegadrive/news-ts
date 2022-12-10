@@ -1,9 +1,7 @@
 import './news.css';
 import { INewsArticle } from '../appView';
 
-
 class News {
-
   public draw(data: Array<INewsArticle>) {
     const news = data.length >= 10 ? data.filter((_item: INewsArticle, idx: number) => idx < 10) : data;
     const fragment = document.createDocumentFragment();
@@ -36,10 +34,7 @@ class News {
     const newsContainer = document.querySelector('.news') as HTMLElement;
     newsContainer.innerHTML = '';
     newsContainer.appendChild(fragment);
-
   }
-
-
 }
 
 export default News;

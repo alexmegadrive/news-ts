@@ -27,11 +27,6 @@ class App {
       this.controller.getNews(e, (data: INewsSourceArchive | undefined): void => this.view.drawNews(data));
     });
 
-    //     const newsFilter = document.querySelector('.news-filter') as HTMLInputElement;
-    //     newsFilter.addEventListener('input', (e: Event) => {
-    //     if (newsFilter.value) this.view.filterNews(newsFilter.value)
-    //   });
-
     this.controller.getSources((data: INewsSourcesData | undefined) => {
       this.view.drawSources(data);
     });

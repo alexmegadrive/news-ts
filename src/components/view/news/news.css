@@ -164,3 +164,26 @@
         padding-left: 25px;
     }
 }
+
+.news-filter {
+    display: none;
+    box-sizing: border-box;
+    width: 200px;
+    height: 40px;
+    margin: 0 auto 20px auto;
+    background: none;
+    border: 2px solid #30c5ff;
+    font: inherit;
+    line-height: 1;
+    padding: 1rem;
+    color: #70d6ff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.news-filter:focus {
+    outline: none;
+    box-shadow: #70d6ff;
+    filter: drop-shadow(0 0 0.5rem #70d6ff6a);
+
+}

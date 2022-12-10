@@ -1,10 +1,17 @@
 .filter {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
+
+.sources-nav,
+.sources-categories {
+    padding: 5px;
+}
+
 .sources-nav {
     display: flex;
-    flex-basis: 50%;
+    flex-basis: 40%;
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
@@ -13,13 +20,20 @@
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
     align-items: flex-start;
+    gap: 5px;
 }
+
 .sources-categories {
     flex-basis: 50%;
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 10px;
+    justify-content: center;
 }
+.sources-categories > div {
+    height: 20px;
+}
+
 .sources {
     display: none;
     /* display: flex; */
@@ -30,53 +44,63 @@
     overflow: auto;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    gap: 10px;
 }
 
 .source__item {
-    background: none;
-    border: 2px solid #30c5ff;
+    background: white;
+    box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.06), 0 1px 2px 0 rgba(0,0,0,0.06);
+    /* background: #e1d9d8; */
+
     font: inherit;
     line-height: 1;
-    margin: 0.5em;
     padding: 1em 2em;
-    color: #70d6ff;
+    color: black;
+    border-radius: 20px;
     transition: 0.25s;
     cursor: pointer;
+    transition: all 0.15s ease-in;
 }
 
 .filter__btn {
-    margin: 0.25em;
     padding: 0.25em 1em;
     display: flex;
     align-items: center;
 }
 
 
+
+.source__item.active {
+    background:rgb(247, 203, 198)
+}
+.source__item.active:hover {
+    background:rgb(247, 203, 198)
+}
 .source__item:hover,
 .source__item:focus {
-    border-color: #3fcc59;
-    color: #69db7e;
-    box-shadow: 0 0.5em 0.5em -0.4em #3fcc59;
-    transform: translateY(-0.25em);
+    background:rgb(242, 220, 218)
 }
 
 .source__item-name {
+    pointer-events: none;
     font-weight: 400;
     white-space: nowrap;
 }
 
 @media screen and (max-width:700px) {
     html {
-        font-size: 11px
+        font-size: 14px
     }
+
     .filter__btn {
         margin: 0.2em;
-        padding: 0.2em 0.35em;
-    }   
+    }
+
     header h1 {
         font-size: 25px !important;
         text-align: center;
     }
+
     .filter {
         flex-direction: column;
     }

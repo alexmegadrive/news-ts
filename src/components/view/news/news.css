@@ -171,19 +171,21 @@
     width: 200px;
     height: 40px;
     margin: 0 auto 20px auto;
-    background: none;
-    border: 2px solid #30c5ff;
+    /* background: rgb(186, 185, 185); */
+    background: rgb(218 215 215);
+    border: 2px solid transparent;
+    outline: none;
     font: inherit;
     line-height: 1;
     padding: 1rem;
-    color: #70d6ff;
     border-radius: 20px;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
 }
 
 .news-filter:focus {
+    /* filter: drop-shadow(0 0 10px rgb(247, 203, 198)); */
     outline: none;
-    box-shadow: #70d6ff;
-    filter: drop-shadow(0 0 0.5rem #70d6ff6a);
+    border: 2px solid rgb(247, 203, 198);
+    /* filter: drop-shadow(0 0 0.5rem #70d6ff6a); */
 
 }

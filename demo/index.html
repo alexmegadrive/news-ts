@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>NewsPortal</title>
+    <script defer="" src="./NewsPortal_files/index.js"></script><style>.news__item {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    margin-bottom: 1.6%;
+    background: #fff;
+    color: #333;
+    line-height: 1.4;
+    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.news__item:hover .news__meta-photo {
+    transform: scale(1.3) rotate(3deg);
+}
+
+.news__item .news__meta {
+    position: relative;
+    height: 200px;
+}
+
+.news__item .news__meta-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.2s;
+}
+
+.news__item .news__meta-details,
+.news__item .news__meta-details ul {
+    margin: auto;
+    padding: 0;
+    list-style: none;
+}
+
+.news__item .news__meta-details {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -120%;
+    margin: auto;
+    transition: left 0.2s;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+.news__item .news__description {
+    padding: 1rem;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+.news__item .news__description h2 {
+    line-height: 1;
+    margin: 0;
+    font-size: 1.7rem;
+}
+
+.news__item .news__description h3 {
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: #a2a2a2;
+    margin-top: 5px;
+}
+
+.news__item .news__description .news__read-more {
+    text-align: right;
+}
+
+.news__item .news__description .news__read-more a {
+    color: #5ad67d;
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+.news__item .news__description .news__read-more a:after {
+    content: '→';
+    margin-left: -10px;
+    opacity: 0;
+    vertical-align: middle;
+    transition: margin 0.3s, opacity 0.3s;
+}
+
+.news__item .news__description .news__read-more a:hover:after {
+    margin-left: 5px;
+    opacity: 1;
+}
+
+.news__item p {
+    margin: 1rem 0 0;
+}
+
+.news__item p:first-of-type {
+    margin-top: 1.25rem;
+    position: relative;
+}
+
+.news__item p:first-of-type:before {
+    content: '';
+    position: absolute;
+    height: 5px;
+    background: #5ad67d;
+    width: 35px;
+    top: -0.75rem;
+    border-radius: 3px;
+}
+
+.news__item:hover .news__meta-details {
+    left: 0%;
+}
+
+@media (min-width: 640px) {
+    .news__item {
+        flex-direction: row;
+        max-width: 700px;
+    }
+
+    .news__item .news__meta {
+        flex-basis: 40%;
+        height: auto;
+    }
+
+    .news__item .news__description {
+        flex-basis: 60%;
+    }
+
+    .news__item .news__description:before {
+        -webkit-transform: skewX(-3deg);
+        transform: skewX(-3deg);
+        content: '';
+        background: #fff;
+        width: 30px;
+        position: absolute;
+        left: -10px;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .news__item.alt {
+        flex-direction: row-reverse;
+    }
+
+    .news__item.alt .news__description:before {
+        left: inherit;
+        right: -10px;
+        -webkit-transform: skew(3deg);
+        transform: skew(3deg);
+    }
+
+    .news__item.alt .news__meta-details {
+        padding-left: 25px;
+    }
+}
+
+.news-filter {
+    display: none;
+    box-sizing: border-box;
+    width: 200px;
+    height: 40px;
+    margin: 0 auto 20px auto;
+    /* background: rgb(186, 185, 185); */
+    background: rgb(218 215 215);
+    border: 2px solid transparent;
+    outline: none;
+    font: inherit;
+    line-height: 1;
+    padding: 1rem;
+    border-radius: 20px;
+    /* transition: all 0.3s ease; */
+}
+
+.news-filter:focus {
+    /* filter: drop-shadow(0 0 10px rgb(247, 203, 198)); */
+    outline: none;
+    border: 2px solid rgb(247, 203, 198);
+    /* filter: drop-shadow(0 0 0.5rem #70d6ff6a); */
+
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL3ZpZXcvbmV3cy9uZXdzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsaUJBQWlCO0lBQ2pCLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLGdCQUFnQjtJQUNoQiw4QkFBOEI7SUFDOUIsa0JBQWtCO0lBQ2xCLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLGtDQUFrQztBQUN0Qzs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixhQUFhO0FBQ2pCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLE1BQU07SUFDTixRQUFRO0lBQ1IsU0FBUztJQUNULE9BQU87SUFDUCxzQkFBc0I7SUFDdEIsMkJBQTJCO0lBQzNCLDBCQUEwQjtBQUM5Qjs7QUFFQTs7SUFFSSxZQUFZO0lBQ1osVUFBVTtJQUNWLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixNQUFNO0lBQ04sU0FBUztJQUNULFdBQVc7SUFDWCxZQUFZO0lBQ1oscUJBQXFCO0lBQ3JCLDhCQUE4QjtJQUM5QixXQUFXO0lBQ1gsYUFBYTtJQUNiLFdBQVc7SUFDWCxpQkFBaUI7QUFDckI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtJQUNsQixVQUFVO0FBQ2Q7O0FBRUE7SUFDSSxjQUFjO0lBQ2QsU0FBUztJQUNULGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxlQUFlO0FBQ25COztBQUVBO0lBQ0ksaUJBQWlCO0FBQ3JCOztBQUVBO0lBQ0ksY0FBYztJQUNkLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIscUJBQXFCO0lBQ3JCLGdCQUFnQjtBQUNwQjs7QUFFQTtJQUNJLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLHNCQUFzQjtJQUN0QixxQ0FBcUM7QUFDekM7O0FBRUE7SUFDSSxnQkFBZ0I7SUFDaEIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsV0FBVztJQUNYLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsYUFBYTtJQUNiLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLFFBQVE7QUFDWjs7QUFFQTtJQUNJO1FBQ0ksbUJBQW1CO1FBQ25CLGdCQUFnQjtJQUNwQjs7SUFFQTtRQUNJLGVBQWU7UUFDZixZQUFZO0lBQ2hCOztJQUVBO1FBQ0ksZUFBZTtJQUNuQjs7SUFFQTtRQUNJLCtCQUErQjtRQUMvQix1QkFBdUI7UUFDdkIsV0FBVztRQUNYLGdCQUFnQjtRQUNoQixXQUFXO1FBQ1gsa0JBQWtCO1FBQ2xCLFdBQVc7UUFDWCxNQUFNO1FBQ04sU0FBUztRQUNULFdBQVc7SUFDZjs7SUFFQTtRQUNJLDJCQUEyQjtJQUMvQjs7SUFFQTtRQUNJLGFBQWE7UUFDYixZQUFZO1FBQ1osNkJBQTZCO1FBQzdCLHFCQUFxQjtJQUN6Qjs7SUFFQTtRQUNJLGtCQUFrQjtJQUN0QjtBQUNKOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixZQUFZO0lBQ1osWUFBWTtJQUNaLHdCQUF3QjtJQUN4QixvQ0FBb0M7SUFDcEMsNEJBQTRCO0lBQzVCLDZCQUE2QjtJQUM3QixhQUFhO0lBQ2IsYUFBYTtJQUNiLGNBQWM7SUFDZCxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLCtCQUErQjtBQUNuQzs7QUFFQTtJQUNJLHNEQUFzRDtJQUN0RCxhQUFhO0lBQ2Isb0NBQW9DO0lBQ3BDLCtDQUErQzs7QUFFbkQiLCJzb3VyY2VzQ29udGVudCI6WyIubmV3c19faXRlbSB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIG1hcmdpbjogMXJlbSBhdXRvO1xuICAgIG1hcmdpbi1ib3R0b206IDEuNiU7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBjb2xvcjogIzMzMztcbiAgICBsaW5lLWhlaWdodDogMS40O1xuICAgIGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbn1cblxuLm5ld3NfX2l0ZW06aG92ZXIgLm5ld3NfX21ldGEtcGhvdG8ge1xuICAgIHRyYW5zZm9ybTogc2NhbGUoMS4zKSByb3RhdGUoM2RlZyk7XG59XG5cbi5uZXdzX19pdGVtIC5uZXdzX19tZXRhIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgaGVpZ2h0OiAyMDBweDtcbn1cblxuLm5ld3NfX2l0ZW0gLm5ld3NfX21ldGEtcGhvdG8ge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG4gICAgcmlnaHQ6IDA7XG4gICAgYm90dG9tOiAwO1xuICAgIGxlZnQ6IDA7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXI7XG4gICAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuMnM7XG59XG5cbi5uZXdzX19pdGVtIC5uZXdzX19tZXRhLWRldGFpbHMsXG4ubmV3c19faXRlbSAubmV3c19fbWV0YS1kZXRhaWxzIHVsIHtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgcGFkZGluZzogMDtcbiAgICBsaXN0LXN0eWxlOiBub25lO1xufVxuXG4ubmV3c19faXRlbSAubmV3c19fbWV0YS1kZXRhaWxzIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIGJvdHRvbTogMDtcbiAgICBsZWZ0OiAtMTIwJTtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgdHJhbnNpdGlvbjogbGVmdCAwLjJzO1xuICAgIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC42KTtcbiAgICBjb2xvcjogI2ZmZjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGZvbnQtc2l6ZTogMC45cmVtO1xufVxuXG4ubmV3c19faXRlbSAubmV3c19fZGVzY3JpcHRpb24ge1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgei1pbmRleDogMTtcbn1cblxuLm5ld3NfX2l0ZW0gLm5ld3NfX2Rlc2NyaXB0aW9uIGgyIHtcbiAgICBsaW5lLWhlaWdodDogMTtcbiAgICBtYXJnaW46IDA7XG4gICAgZm9udC1zaXplOiAxLjdyZW07XG59XG5cbi5uZXdzX19pdGVtIC5uZXdzX19kZXNjcmlwdGlvbiBoMyB7XG4gICAgZm9udC1zaXplOiAxcmVtO1xuICAgIGZvbnQtd2VpZ2h0OiAzMDA7XG4gICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICBjb2xvcjogI2EyYTJhMjtcbiAgICBtYXJnaW4tdG9wOiA1cHg7XG59XG5cbi5uZXdzX19pdGVtIC5uZXdzX19kZXNjcmlwdGlvbiAubmV3c19fcmVhZC1tb3JlIHtcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcbn1cblxuLm5ld3NfX2l0ZW0gLm5ld3NfX2Rlc2NyaXB0aW9uIC5uZXdzX19yZWFkLW1vcmUgYSB7XG4gICAgY29sb3I6ICM1YWQ2N2Q7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgZm9udC13ZWlnaHQ6IDgwMDtcbn1cblxuLm5ld3NfX2l0ZW0gLm5ld3NfX2Rlc2NyaXB0aW9uIC5uZXdzX19yZWFkLW1vcmUgYTphZnRlciB7XG4gICAgY29udGVudDogJ+KGkic7XG4gICAgbWFyZ2luLWxlZnQ6IC0xMHB4O1xuICAgIG9wYWNpdHk6IDA7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbiAgICB0cmFuc2l0aW9uOiBtYXJnaW4gMC4zcywgb3BhY2l0eSAwLjNzO1xufVxuXG4ubmV3c19faXRlbSAubmV3c19fZGVzY3JpcHRpb24gLm5ld3NfX3JlYWQtbW9yZSBhOmhvdmVyOmFmdGVyIHtcbiAgICBtYXJnaW4tbGVmdDogNXB4O1xuICAgIG9wYWNpdHk6IDE7XG59XG5cbi5uZXdzX19pdGVtIHAge1xuICAgIG1hcmdpbjogMXJlbSAwIDA7XG59XG5cbi5uZXdzX19pdGVtIHA6Zmlyc3Qtb2YtdHlwZSB7XG4gICAgbWFyZ2luLXRvcDogMS4yNXJlbTtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5uZXdzX19pdGVtIHA6Zmlyc3Qtb2YtdHlwZTpiZWZvcmUge1xuICAgIGNvbnRlbnQ6ICcnO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBoZWlnaHQ6IDVweDtcbiAgICBiYWNrZ3JvdW5kOiAjNWFkNjdkO1xuICAgIHdpZHRoOiAzNXB4O1xuICAgIHRvcDogLTAuNzVyZW07XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xufVxuXG4ubmV3c19faXRlbTpob3ZlciAubmV3c19fbWV0YS1kZXRhaWxzIHtcbiAgICBsZWZ0OiAwJTtcbn1cblxuQG1lZGlhIChtaW4td2lkdGg6IDY0MHB4KSB7XG4gICAgLm5ld3NfX2l0ZW0ge1xuICAgICAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAgICAgICBtYXgtd2lkdGg6IDcwMHB4O1xuICAgIH1cblxuICAgIC5uZXdzX19pdGVtIC5uZXdzX19tZXRhIHtcbiAgICAgICAgZmxleC1iYXNpczogNDAlO1xuICAgICAgICBoZWlnaHQ6IGF1dG87XG4gICAgfVxuXG4gICAgLm5ld3NfX2l0ZW0gLm5ld3NfX2Rlc2NyaXB0aW9uIHtcbiAgICAgICAgZmxleC1iYXNpczogNjAlO1xuICAgIH1cblxuICAgIC5uZXdzX19pdGVtIC5uZXdzX19kZXNjcmlwdGlvbjpiZWZvcmUge1xuICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogc2tld1goLTNkZWcpO1xuICAgICAgICB0cmFuc2Zvcm06IHNrZXdYKC0zZGVnKTtcbiAgICAgICAgY29udGVudDogJyc7XG4gICAgICAgIGJhY2tncm91bmQ6ICNmZmY7XG4gICAgICAgIHdpZHRoOiAzMHB4O1xuICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgIGxlZnQ6IC0xMHB4O1xuICAgICAgICB0b3A6IDA7XG4gICAgICAgIGJvdHRvbTogMDtcbiAgICAgICAgei1pbmRleDogLTE7XG4gICAgfVxuXG4gICAgLm5ld3NfX2l0ZW0uYWx0IHtcbiAgICAgICAgZmxleC1kaXJlY3Rpb246IHJvdy1yZXZlcnNlO1xuICAgIH1cblxuICAgIC5uZXdzX19pdGVtLmFsdCAubmV3c19fZGVzY3JpcHRpb246YmVmb3JlIHtcbiAgICAgICAgbGVmdDogaW5oZXJpdDtcbiAgICAgICAgcmlnaHQ6IC0xMHB4O1xuICAgICAgICAtd2Via2l0LXRyYW5zZm9ybTogc2tldygzZGVnKTtcbiAgICAgICAgdHJhbnNmb3JtOiBza2V3KDNkZWcpO1xuICAgIH1cblxuICAgIC5uZXdzX19pdGVtLmFsdCAubmV3c19fbWV0YS1kZXRhaWxzIHtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAyNXB4O1xuICAgIH1cbn1cblxuLm5ld3MtZmlsdGVyIHtcbiAgICBkaXNwbGF5OiBub25lO1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgd2lkdGg6IDIwMHB4O1xuICAgIGhlaWdodDogNDBweDtcbiAgICBtYXJnaW46IDAgYXV0byAyMHB4IGF1dG87XG4gICAgLyogYmFja2dyb3VuZDogcmdiKDE4NiwgMTg1LCAxODUpOyAqL1xuICAgIGJhY2tncm91bmQ6IHJnYigyMTggMjE1IDIxNSk7XG4gICAgYm9yZGVyOiAycHggc29saWQgdHJhbnNwYXJlbnQ7XG4gICAgb3V0bGluZTogbm9uZTtcbiAgICBmb250OiBpbmhlcml0O1xuICAgIGxpbmUtaGVpZ2h0OiAxO1xuICAgIHBhZGRpbmc6IDFyZW07XG4gICAgYm9yZGVyLXJhZGl1czogMjBweDtcbiAgICAvKiB0cmFuc2l0aW9uOiBhbGwgMC4zcyBlYXNlOyAqL1xufVxuXG4ubmV3cy1maWx0ZXI6Zm9jdXMge1xuICAgIC8qIGZpbHRlcjogZHJvcC1zaGFkb3coMCAwIDEwcHggcmdiKDI0NywgMjAzLCAxOTgpKTsgKi9cbiAgICBvdXRsaW5lOiBub25lO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIHJnYigyNDcsIDIwMywgMTk4KTtcbiAgICAvKiBmaWx0ZXI6IGRyb3Atc2hhZG93KDAgMCAwLjVyZW0gIzcwZDZmZjZhKTsgKi9cblxufSJdLCJzb3VyY2VSb290IjoiIn0= */</style><style>.filter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sources-nav,
+.sources-categories {
+    padding: 5px;
+}
+
+.sources-nav {
+    display: flex;
+    flex-basis: 40%;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    align-items: center;
+    font: 300 1em 'Fira Sans', sans-serif;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.sources-categories {
+    flex-basis: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.sources-categories > div {
+    height: 20px;
+}
+
+.sources {
+    display: none;
+    /* display: flex; */
+    margin: 20px 0;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    align-items: center;
+    font: 300 1em 'Fira Sans', sans-serif;
+    gap: 10px;
+}
+
+.source__item {
+    background: white;
+    box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.06), 0 1px 2px 0 rgba(0,0,0,0.06);
+    /* background: #e1d9d8; */
+
+    font: inherit;
+    line-height: 1;
+    padding: 1em 2em;
+    color: black;
+    border-radius: 20px;
+    transition: 0.25s;
+    cursor: pointer;
+    transition: all 0.15s ease-in;
+}
+
+.filter__btn {
+    padding: 0.25em 1em;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.source__item.active {
+    background:rgb(247, 203, 198)
+}
+.source__item.active:hover {
+    background:rgb(247, 203, 198)
+}
+.source__item:hover,
+.source__item:focus {
+    background:rgb(242, 220, 218)
+}
+
+.source__item-name {
+    pointer-events: none;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+@media screen and (max-width:700px) {
+    html {
+        font-size: 14px
+    }
+
+    .filter__btn {
+        margin: 0.2em;
+    }
+
+    header h1 {
+        font-size: 25px !important;
+        text-align: center;
+    }
+
+    .filter {
+        flex-direction: column;
+    }
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9jb21wb25lbnRzL3ZpZXcvc291cmNlcy9zb3VyY2VzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsOEJBQThCO0FBQ2xDOztBQUVBOztJQUVJLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsZUFBZTtJQUNmLHVCQUF1QjtJQUN2QixlQUFlO0lBQ2YsV0FBVztJQUNYLFlBQVk7SUFDWixjQUFjO0lBQ2QsbUJBQW1CO0lBQ25CLHFDQUFxQztJQUNyQyx1QkFBdUI7SUFDdkIsUUFBUTtBQUNaOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGFBQWE7SUFDYixlQUFlO0lBQ2YsU0FBUztJQUNULHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsY0FBYztJQUNkLGVBQWU7SUFDZixXQUFXO0lBQ1gsWUFBWTtJQUNaLGNBQWM7SUFDZCxtQkFBbUI7SUFDbkIscUNBQXFDO0lBQ3JDLFNBQVM7QUFDYjs7QUFFQTtJQUNJLGlCQUFpQjtJQUNqQiwyRUFBMkU7SUFDM0UseUJBQXlCOztJQUV6QixhQUFhO0lBQ2IsY0FBYztJQUNkLGdCQUFnQjtJQUNoQixZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YsNkJBQTZCO0FBQ2pDOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLGFBQWE7SUFDYixtQkFBbUI7QUFDdkI7Ozs7QUFJQTtJQUNJO0FBQ0o7QUFDQTtJQUNJO0FBQ0o7QUFDQTs7SUFFSTtBQUNKOztBQUVBO0lBQ0ksb0JBQW9CO0lBQ3BCLGdCQUFnQjtJQUNoQixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSTtRQUNJO0lBQ0o7O0lBRUE7UUFDSSxhQUFhO0lBQ2pCOztJQUVBO1FBQ0ksMEJBQTBCO1FBQzFCLGtCQUFrQjtJQUN0Qjs7SUFFQTtRQUNJLHNCQUFzQjtJQUMxQjtBQUNKIiwic291cmNlc0NvbnRlbnQiOlsiLmZpbHRlciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2Vlbjtcbn1cblxuLnNvdXJjZXMtbmF2LFxuLnNvdXJjZXMtY2F0ZWdvcmllcyB7XG4gICAgcGFkZGluZzogNXB4O1xufVxuXG4uc291cmNlcy1uYXYge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1iYXNpczogNDAlO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IGF1dG87XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmb250OiAzMDAgMWVtICdGaXJhIFNhbnMnLCBzYW5zLXNlcmlmO1xuICAgIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xuICAgIGdhcDogNXB4O1xufVxuXG4uc291cmNlcy1jYXRlZ29yaWVzIHtcbiAgICBmbGV4LWJhc2lzOiA1MCU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgZ2FwOiAxMHB4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuLnNvdXJjZXMtY2F0ZWdvcmllcyA+IGRpdiB7XG4gICAgaGVpZ2h0OiAyMHB4O1xufVxuXG4uc291cmNlcyB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgICAvKiBkaXNwbGF5OiBmbGV4OyAqL1xuICAgIG1hcmdpbjogMjBweCAwO1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IGF1dG87XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmb250OiAzMDAgMWVtICdGaXJhIFNhbnMnLCBzYW5zLXNlcmlmO1xuICAgIGdhcDogMTBweDtcbn1cblxuLnNvdXJjZV9faXRlbSB7XG4gICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgYm94LXNoYWRvdzogaW5zZXQgMCAtMXB4IDAgMCByZ2JhKDAsMCwwLDAuMDYpLCAwIDFweCAycHggMCByZ2JhKDAsMCwwLDAuMDYpO1xuICAgIC8qIGJhY2tncm91bmQ6ICNlMWQ5ZDg7ICovXG5cbiAgICBmb250OiBpbmhlcml0O1xuICAgIGxpbmUtaGVpZ2h0OiAxO1xuICAgIHBhZGRpbmc6IDFlbSAyZW07XG4gICAgY29sb3I6IGJsYWNrO1xuICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XG4gICAgdHJhbnNpdGlvbjogMC4yNXM7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjE1cyBlYXNlLWluO1xufVxuXG4uZmlsdGVyX19idG4ge1xuICAgIHBhZGRpbmc6IDAuMjVlbSAxZW07XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG5cblxuLnNvdXJjZV9faXRlbS5hY3RpdmUge1xuICAgIGJhY2tncm91bmQ6cmdiKDI0NywgMjAzLCAxOTgpXG59XG4uc291cmNlX19pdGVtLmFjdGl2ZTpob3ZlciB7XG4gICAgYmFja2dyb3VuZDpyZ2IoMjQ3LCAyMDMsIDE5OClcbn1cbi5zb3VyY2VfX2l0ZW06aG92ZXIsXG4uc291cmNlX19pdGVtOmZvY3VzIHtcbiAgICBiYWNrZ3JvdW5kOnJnYigyNDIsIDIyMCwgMjE4KVxufVxuXG4uc291cmNlX19pdGVtLW5hbWUge1xuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAgIGZvbnQtd2VpZ2h0OiA0MDA7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn1cblxuQG1lZGlhIHNjcmVlbiBhbmQgKG1heC13aWR0aDo3MDBweCkge1xuICAgIGh0bWwge1xuICAgICAgICBmb250LXNpemU6IDE0cHhcbiAgICB9XG5cbiAgICAuZmlsdGVyX19idG4ge1xuICAgICAgICBtYXJnaW46IDAuMmVtO1xuICAgIH1cblxuICAgIGhlYWRlciBoMSB7XG4gICAgICAgIGZvbnQtc2l6ZTogMjVweCAhaW1wb3J0YW50O1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgfVxuXG4gICAgLmZpbHRlciB7XG4gICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgfVxufSJdLCJzb3VyY2VSb290IjoiIn0= */</style><style>body {
+    color: black;
+    background: #F2F2F2;
+    font-family: sans-serif;
+}
+
+header {
+    padding: 10px 30px;
+}
+
+header h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+footer {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+footer .copyright {
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+footer .copyright a {
+    color: #444;
+}
+footer .copyright a:hover {
+    color: #555;
+}
+footer .copyright:before {
+    content: '©';
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9nbG9iYWwuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksWUFBWTtJQUNaLG1CQUFtQjtJQUNuQix1QkFBdUI7QUFDM0I7O0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxlQUFlO0lBQ2YsV0FBVztJQUNYLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksV0FBVztBQUNmO0FBQ0E7SUFDSSxXQUFXO0FBQ2Y7QUFDQTtJQUNJLFlBQVk7QUFDaEIiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgYmFja2dyb3VuZDogI0YyRjJGMjtcbiAgICBmb250LWZhbWlseTogc2Fucy1zZXJpZjtcbn1cblxuaGVhZGVyIHtcbiAgICBwYWRkaW5nOiAxMHB4IDMwcHg7XG59XG5cbmhlYWRlciBoMSB7XG4gICAgZm9udC1zaXplOiA0MHB4O1xuICAgIGZvbnQtd2VpZ2h0OiA4MDA7XG59XG5cbmZvb3RlciB7XG4gICAgaGVpZ2h0OiAxMDBweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG59XG5mb290ZXIgLmNvcHlyaWdodCB7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIGNvbG9yOiAjMzMzO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbmZvb3RlciAuY29weXJpZ2h0IGEge1xuICAgIGNvbG9yOiAjNDQ0O1xufVxuZm9vdGVyIC5jb3B5cmlnaHQgYTpob3ZlciB7XG4gICAgY29sb3I6ICM1NTU7XG59XG5mb290ZXIgLmNvcHlyaWdodDpiZWZvcmUge1xuICAgIGNvbnRlbnQ6ICfCqSc7XG59XG4iXSwic291cmNlUm9vdCI6IiJ9 */</style></head>
+    <body>
+        <header>
+            <h1>News Portal</h1>
+        </header>
+        <main>
+            <div class="filter">
+                <div class="sources-nav">
+                <div class="source__item filter__btn" data-filter="A">A</div><div class="source__item filter__btn" data-filter="B">B</div><div class="source__item filter__btn" data-filter="C">C</div><div class="source__item filter__btn" data-filter="D">D</div><div class="source__item filter__btn" data-filter="E">E</div><div class="source__item filter__btn" data-filter="F">F</div><div class="source__item filter__btn" data-filter="G">G</div><div class="source__item filter__btn" data-filter="H">H</div><div class="source__item filter__btn" data-filter="I">I</div><div class="source__item filter__btn" data-filter="L">L</div><div class="source__item filter__btn" data-filter="M">M</div><div class="source__item filter__btn" data-filter="N">N</div><div class="source__item filter__btn" data-filter="P">P</div><div class="source__item filter__btn" data-filter="R">R</div><div class="source__item filter__btn" data-filter="S">S</div><div class="source__item filter__btn" data-filter="T">T</div><div class="source__item filter__btn" data-filter="U">U</div><div class="source__item filter__btn" data-filter="V">V</div><div class="source__item filter__btn" data-filter="W">W</div><div class="source__item filter__btn" data-filter="X">X</div><div class="source__item filter__btn" data-filter="Y">Y</div></div>
+                <div class="sources-categories"><div class="source__item filter__btn active" data-filter="business">business</div><div class="source__item filter__btn" data-filter="entertainment">entertainment</div><div class="source__item filter__btn" data-filter="general">general</div><div class="source__item filter__btn" data-filter="health">health</div><div class="source__item filter__btn" data-filter="science">science</div><div class="source__item filter__btn" data-filter="sports">sports</div><div class="source__item filter__btn" data-filter="technology">technology</div></div>
+            </div>
+            
+            <div class="sources buttons" style="display: flex;" data-source="bloomberg">
+            <div class="source__item" data-source-id="abc-news" data-source-category="general" hidden="">
+                <span class="source__item-name">ABC News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="abc-news-au" data-source-category="general" hidden="">
+                <span class="source__item-name">ABC News (AU)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="aftenposten" data-source-category="general" hidden="">
+                <span class="source__item-name">Aftenposten</span>
+            </div>
+        
+            <div class="source__item" data-source-id="al-jazeera-english" data-source-category="general" hidden="">
+                <span class="source__item-name">Al Jazeera English</span>
+            </div>
+        
+            <div class="source__item" data-source-id="ansa" data-source-category="general" hidden="">
+                <span class="source__item-name">ANSA.it</span>
+            </div>
+        
+            <div class="source__item" data-source-id="argaam" data-source-category="business">
+                <span class="source__item-name">Argaam</span>
+            </div>
+        
+            <div class="source__item" data-source-id="ars-technica" data-source-category="technology" hidden="">
+                <span class="source__item-name">Ars Technica</span>
+            </div>
+        
+            <div class="source__item" data-source-id="ary-news" data-source-category="general" hidden="">
+                <span class="source__item-name">Ary News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="associated-press" data-source-category="general" hidden="">
+                <span class="source__item-name">Associated Press</span>
+            </div>
+        
+            <div class="source__item" data-source-id="australian-financial-review" data-source-category="business">
+                <span class="source__item-name">Australian Financial Review</span>
+            </div>
+        
+            <div class="source__item" data-source-id="axios" data-source-category="general" hidden="">
+                <span class="source__item-name">Axios</span>
+            </div>
+        
+            <div class="source__item" data-source-id="bbc-news" data-source-category="general" hidden="">
+                <span class="source__item-name">BBC News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="bbc-sport" data-source-category="sports" hidden="">
+                <span class="source__item-name">BBC Sport</span>
+            </div>
+        
+            <div class="source__item" data-source-id="bild" data-source-category="general" hidden="">
+                <span class="source__item-name">Bild</span>
+            </div>
+        
+            <div class="source__item" data-source-id="blasting-news-br" data-source-category="general" hidden="">
+                <span class="source__item-name">Blasting News (BR)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="bleacher-report" data-source-category="sports" hidden="">
+                <span class="source__item-name">Bleacher Report</span>
+            </div>
+        
+            <div class="source__item active" data-source-id="bloomberg" data-source-category="business">
+                <span class="source__item-name">Bloomberg</span>
+            </div>
+        
+            <div class="source__item" data-source-id="breitbart-news" data-source-category="general" hidden="">
+                <span class="source__item-name">Breitbart News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="business-insider" data-source-category="business">
+                <span class="source__item-name">Business Insider</span>
+            </div>
+        
+            <div class="source__item" data-source-id="business-insider-uk" data-source-category="business">
+                <span class="source__item-name">Business Insider (UK)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="buzzfeed" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">Buzzfeed</span>
+            </div>
+        
+            <div class="source__item" data-source-id="cbc-news" data-source-category="general" hidden="">
+                <span class="source__item-name">CBC News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="cbs-news" data-source-category="general" hidden="">
+                <span class="source__item-name">CBS News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="cnn" data-source-category="general" hidden="">
+                <span class="source__item-name">CNN</span>
+            </div>
+        
+            <div class="source__item" data-source-id="cnn-es" data-source-category="general" hidden="">
+                <span class="source__item-name">CNN Spanish</span>
+            </div>
+        
+            <div class="source__item" data-source-id="crypto-coins-news" data-source-category="technology" hidden="">
+                <span class="source__item-name">Crypto Coins News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="der-tagesspiegel" data-source-category="general" hidden="">
+                <span class="source__item-name">Der Tagesspiegel</span>
+            </div>
+        
+            <div class="source__item" data-source-id="die-zeit" data-source-category="business">
+                <span class="source__item-name">Die Zeit</span>
+            </div>
+        
+            <div class="source__item" data-source-id="el-mundo" data-source-category="general" hidden="">
+                <span class="source__item-name">El Mundo</span>
+            </div>
+        
+            <div class="source__item" data-source-id="engadget" data-source-category="technology" hidden="">
+                <span class="source__item-name">Engadget</span>
+            </div>
+        
+            <div class="source__item" data-source-id="entertainment-weekly" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">Entertainment Weekly</span>
+            </div>
+        
+            <div class="source__item" data-source-id="espn" data-source-category="sports" hidden="">
+                <span class="source__item-name">ESPN</span>
+            </div>
+        
+            <div class="source__item" data-source-id="espn-cric-info" data-source-category="sports" hidden="">
+                <span class="source__item-name">ESPN Cric Info</span>
+            </div>
+        
+            <div class="source__item" data-source-id="financial-post" data-source-category="business">
+                <span class="source__item-name">Financial Post</span>
+            </div>
+        
+            <div class="source__item" data-source-id="focus" data-source-category="general" hidden="">
+                <span class="source__item-name">Focus</span>
+            </div>
+        
+            <div class="source__item" data-source-id="football-italia" data-source-category="sports" hidden="">
+                <span class="source__item-name">Football Italia</span>
+            </div>
+        
+            <div class="source__item" data-source-id="fortune" data-source-category="business">
+                <span class="source__item-name">Fortune</span>
+            </div>
+        
+            <div class="source__item" data-source-id="four-four-two" data-source-category="sports" hidden="">
+                <span class="source__item-name">FourFourTwo</span>
+            </div>
+        
+            <div class="source__item" data-source-id="fox-news" data-source-category="general" hidden="">
+                <span class="source__item-name">Fox News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="fox-sports" data-source-category="sports" hidden="">
+                <span class="source__item-name">Fox Sports</span>
+            </div>
+        
+            <div class="source__item" data-source-id="globo" data-source-category="general" hidden="">
+                <span class="source__item-name">Globo</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-ar" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Argentina)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-au" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Australia)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-br" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Brasil)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-ca" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Canada)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-fr" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (France)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-in" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (India)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-is" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Israel)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-it" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Italy)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-ru" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Russia)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-sa" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (Saudi Arabia)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="google-news-uk" data-source-category="general" hidden="">
+                <span class="source__item-name">Google News (UK)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="goteborgs-posten" data-source-category="general" hidden="">
+                <span class="source__item-name">Göteborgs-Posten</span>
+            </div>
+        
+            <div class="source__item" data-source-id="gruenderszene" data-source-category="technology" hidden="">
+                <span class="source__item-name">Gruenderszene</span>
+            </div>
+        
+            <div class="source__item" data-source-id="hacker-news" data-source-category="technology" hidden="">
+                <span class="source__item-name">Hacker News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="handelsblatt" data-source-category="business">
+                <span class="source__item-name">Handelsblatt</span>
+            </div>
+        
+            <div class="source__item" data-source-id="ign" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">IGN</span>
+            </div>
+        
+            <div class="source__item" data-source-id="il-sole-24-ore" data-source-category="business">
+                <span class="source__item-name">Il Sole 24 Ore</span>
+            </div>
+        
+            <div class="source__item" data-source-id="independent" data-source-category="general" hidden="">
+                <span class="source__item-name">Independent</span>
+            </div>
+        
+            <div class="source__item" data-source-id="infobae" data-source-category="general" hidden="">
+                <span class="source__item-name">Infobae</span>
+            </div>
+        
+            <div class="source__item" data-source-id="info-money" data-source-category="business">
+                <span class="source__item-name">InfoMoney</span>
+            </div>
+        
+            <div class="source__item" data-source-id="la-gaceta" data-source-category="general" hidden="">
+                <span class="source__item-name">La Gaceta</span>
+            </div>
+        
+            <div class="source__item" data-source-id="la-nacion" data-source-category="general" hidden="">
+                <span class="source__item-name">La Nacion</span>
+            </div>
+        
+            <div class="source__item" data-source-id="la-repubblica" data-source-category="general" hidden="">
+                <span class="source__item-name">La Repubblica</span>
+            </div>
+        
+            <div class="source__item" data-source-id="le-monde" data-source-category="general" hidden="">
+                <span class="source__item-name">Le Monde</span>
+            </div>
+        
+            <div class="source__item" data-source-id="lenta" data-source-category="general" hidden="">
+                <span class="source__item-name">Lenta</span>
+            </div>
+        
+            <div class="source__item" data-source-id="lequipe" data-source-category="sports" hidden="">
+                <span class="source__item-name">L'equipe</span>
+            </div>
+        
+            <div class="source__item" data-source-id="les-echos" data-source-category="business">
+                <span class="source__item-name">Les Echos</span>
+            </div>
+        
+            <div class="source__item" data-source-id="liberation" data-source-category="general" hidden="">
+                <span class="source__item-name">Libération</span>
+            </div>
+        
+            <div class="source__item" data-source-id="marca" data-source-category="sports" hidden="">
+                <span class="source__item-name">Marca</span>
+            </div>
+        
+            <div class="source__item" data-source-id="mashable" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">Mashable</span>
+            </div>
+        
+            <div class="source__item" data-source-id="medical-news-today" data-source-category="health" hidden="">
+                <span class="source__item-name">Medical News Today</span>
+            </div>
+        
+            <div class="source__item" data-source-id="msnbc" data-source-category="general" hidden="">
+                <span class="source__item-name">MSNBC</span>
+            </div>
+        
+            <div class="source__item" data-source-id="mtv-news" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">MTV News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="mtv-news-uk" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">MTV News (UK)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="national-geographic" data-source-category="science" hidden="">
+                <span class="source__item-name">National Geographic</span>
+            </div>
+        
+            <div class="source__item" data-source-id="national-review" data-source-category="general" hidden="">
+                <span class="source__item-name">National Review</span>
+            </div>
+        
+            <div class="source__item" data-source-id="nbc-news" data-source-category="general" hidden="">
+                <span class="source__item-name">NBC News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="news24" data-source-category="general" hidden="">
+                <span class="source__item-name">News24</span>
+            </div>
+        
+            <div class="source__item" data-source-id="new-scientist" data-source-category="science" hidden="">
+                <span class="source__item-name">New Scientist</span>
+            </div>
+        
+            <div class="source__item" data-source-id="news-com-au" data-source-category="general" hidden="">
+                <span class="source__item-name">News.com.au</span>
+            </div>
+        
+            <div class="source__item" data-source-id="newsweek" data-source-category="general" hidden="">
+                <span class="source__item-name">Newsweek</span>
+            </div>
+        
+            <div class="source__item" data-source-id="new-york-magazine" data-source-category="general" hidden="">
+                <span class="source__item-name">New York Magazine</span>
+            </div>
+        
+            <div class="source__item" data-source-id="next-big-future" data-source-category="science" hidden="">
+                <span class="source__item-name">Next Big Future</span>
+            </div>
+        
+            <div class="source__item" data-source-id="nfl-news" data-source-category="sports" hidden="">
+                <span class="source__item-name">NFL News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="nhl-news" data-source-category="sports" hidden="">
+                <span class="source__item-name">NHL News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="nrk" data-source-category="general" hidden="">
+                <span class="source__item-name">NRK</span>
+            </div>
+        
+            <div class="source__item" data-source-id="politico" data-source-category="general" hidden="">
+                <span class="source__item-name">Politico</span>
+            </div>
+        
+            <div class="source__item" data-source-id="polygon" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">Polygon</span>
+            </div>
+        
+            <div class="source__item" data-source-id="rbc" data-source-category="general" hidden="">
+                <span class="source__item-name">RBC</span>
+            </div>
+        
+            <div class="source__item" data-source-id="recode" data-source-category="technology" hidden="">
+                <span class="source__item-name">Recode</span>
+            </div>
+        
+            <div class="source__item" data-source-id="reddit-r-all" data-source-category="general" hidden="">
+                <span class="source__item-name">Reddit /r/all</span>
+            </div>
+        
+            <div class="source__item" data-source-id="reuters" data-source-category="general" hidden="">
+                <span class="source__item-name">Reuters</span>
+            </div>
+        
+            <div class="source__item" data-source-id="rt" data-source-category="general" hidden="">
+                <span class="source__item-name">RT</span>
+            </div>
+        
+            <div class="source__item" data-source-id="rte" data-source-category="general" hidden="">
+                <span class="source__item-name">RTE</span>
+            </div>
+        
+            <div class="source__item" data-source-id="rtl-nieuws" data-source-category="general" hidden="">
+                <span class="source__item-name">RTL Nieuws</span>
+            </div>
+        
+            <div class="source__item" data-source-id="sabq" data-source-category="general" hidden="">
+                <span class="source__item-name">SABQ</span>
+            </div>
+        
+            <div class="source__item" data-source-id="spiegel-online" data-source-category="general" hidden="">
+                <span class="source__item-name">Spiegel Online</span>
+            </div>
+        
+            <div class="source__item" data-source-id="svenska-dagbladet" data-source-category="general" hidden="">
+                <span class="source__item-name">Svenska Dagbladet</span>
+            </div>
+        
+            <div class="source__item" data-source-id="t3n" data-source-category="technology" hidden="">
+                <span class="source__item-name">T3n</span>
+            </div>
+        
+            <div class="source__item" data-source-id="talksport" data-source-category="sports" hidden="">
+                <span class="source__item-name">TalkSport</span>
+            </div>
+        
+            <div class="source__item" data-source-id="techcrunch" data-source-category="technology" hidden="">
+                <span class="source__item-name">TechCrunch</span>
+            </div>
+        
+            <div class="source__item" data-source-id="techcrunch-cn" data-source-category="technology" hidden="">
+                <span class="source__item-name">TechCrunch (CN)</span>
+            </div>
+        
+            <div class="source__item" data-source-id="techradar" data-source-category="technology" hidden="">
+                <span class="source__item-name">TechRadar</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-american-conservative" data-source-category="general" hidden="">
+                <span class="source__item-name">The American Conservative</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-globe-and-mail" data-source-category="general" hidden="">
+                <span class="source__item-name">The Globe And Mail</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-hill" data-source-category="general" hidden="">
+                <span class="source__item-name">The Hill</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-hindu" data-source-category="general" hidden="">
+                <span class="source__item-name">The Hindu</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-huffington-post" data-source-category="general" hidden="">
+                <span class="source__item-name">The Huffington Post</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-irish-times" data-source-category="general" hidden="">
+                <span class="source__item-name">The Irish Times</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-jerusalem-post" data-source-category="general" hidden="">
+                <span class="source__item-name">The Jerusalem Post</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-lad-bible" data-source-category="entertainment" hidden="">
+                <span class="source__item-name">The Lad Bible</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-next-web" data-source-category="technology" hidden="">
+                <span class="source__item-name">The Next Web</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-sport-bible" data-source-category="sports" hidden="">
+                <span class="source__item-name">The Sport Bible</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-times-of-india" data-source-category="general" hidden="">
+                <span class="source__item-name">The Times of India</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-verge" data-source-category="technology" hidden="">
+                <span class="source__item-name">The Verge</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-wall-street-journal" data-source-category="business">
+                <span class="source__item-name">The Wall Street Journal</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-washington-post" data-source-category="general" hidden="">
+                <span class="source__item-name">The Washington Post</span>
+            </div>
+        
+            <div class="source__item" data-source-id="the-washington-times" data-source-category="general" hidden="">
+                <span class="source__item-name">The Washington Times</span>
+            </div>
+        
+            <div class="source__item" data-source-id="time" data-source-category="general" hidden="">
+                <span class="source__item-name">Time</span>
+            </div>
+        
+            <div class="source__item" data-source-id="usa-today" data-source-category="general" hidden="">
+                <span class="source__item-name">USA Today</span>
+            </div>
+        
+            <div class="source__item" data-source-id="vice-news" data-source-category="general" hidden="">
+                <span class="source__item-name">Vice News</span>
+            </div>
+        
+            <div class="source__item" data-source-id="wired" data-source-category="technology" hidden="">
+                <span class="source__item-name">Wired</span>
+            </div>
+        
+            <div class="source__item" data-source-id="wired-de" data-source-category="technology" hidden="">
+                <span class="source__item-name">Wired.de</span>
+            </div>
+        
+            <div class="source__item" data-source-id="wirtschafts-woche" data-source-category="business">
+                <span class="source__item-name">Wirtschafts Woche</span>
+            </div>
+        
+            <div class="source__item" data-source-id="xinhua-net" data-source-category="general" hidden="">
+                <span class="source__item-name">Xinhua Net</span>
+            </div>
+        
+            <div class="source__item" data-source-id="ynet" data-source-category="general" hidden="">
+                <span class="source__item-name">Ynet</span>
+            </div>
+        </div>
+            <input type="text" class="news-filter" placeholder="Search..." style="display: flex;">
+
+            <div class="news">
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iqgHDVv_eM7Q/v1/1200x800.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Ezra Fieser</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Maduro Orders Economic Team to Defend Sliding Venezuela Currency</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Venezuela President Nicolas Maduro ordered his economic team to take measures to defend the bolivar following a sharp fall against the dollar this month.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/maduro-orders-economic-team-to-defend-sliding-venezuela-currency">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item alt">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iIcHP_mtND5Y/v0/1200x745.png&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Brian K Sullivan</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Pacific Storm Will Pummel US With Snow, Floods and Tornadoes</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">A Pacific storm uncoiling itself over California with heavy rain and snow is forecast to deliver a severe risk for tornadoes, high winds and thunderstorms across parts of Mississippi, Louisiana and Arkansas by the middle of next week.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/pacific-storm-will-pummel-us-with-snow-floods-and-tornadoes">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iz00FV.Eygbw/v0/1200x900.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Margaret Sutherlin</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">The New Richest Family, Biden's Antitrust Agenda: A Week of Big Take</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content"></p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/newsletters/2022-12-10/world-s-richest-family-taylor-swift-tickets-the-week-of-big-take">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item alt">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/itrpzDCsOyRY/v0/1200x800.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Mario Parker</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">In Battleground Georgia, Republicans and Democrats Each Find a Star</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Warnock won in&nbsp;tightly-contested Senate race.&nbsp;Kemp was re-elected&nbsp;as governor. Their victories herald&nbsp;a political future.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/warnock-kemp-wins-in-georgia-propel-their-political-futures">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ijMb0TrnWs8k/v1/1200x799.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Jan-Henrik Foerster, Sagarika Jaisinghani</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Lombard Odier's Keller Warns UK's New Coal Mine to Hit Investor Confidence</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">The UK’s move to open its first deep coal mine in more than three decades could make investors nervous about the country’s ambitions to hit clean energy goals.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/lombard-odier-s-hubert-keller-warns-new-coal-mine-to-hit-investor-confidence">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item alt">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iLHa86TgK8Ow/v1/1200x951.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Ndileka Mandela</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Since Mandela the Nobel Prize Has Overlooked Global South</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Nelson Mandela aside, the global south has been largely ignored by the committee, and that’s bad for the entire world.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/opinion/articles/2022-12-10/since-mandela-the-nobel-prize-has-overlooked-global-south">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iTNdaPesGHjE/v0/1200x800.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Colleen Goko</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">South Africa's Eskom Ramps up Outages, to Cut 5,000MW</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">South Africa’s state-owned power utility is increasing power outages once again in spite of a government directive late last week to reduce the intensity of electricity cuts.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/south-africa-s-eskom-ramps-up-outages-to-cut-5-000mw">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item alt">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i60bV4jRgvAU/v0/1200x800.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Alexandre Rajbhandari</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Brad Pitt's Production Company Sells Stake to France's Mediawan</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Brad Pitt’s Plan B Entertainment, the production company behind films like The Big Short, agreed to sell a “significant” stake to Mediawan SA, the French media conglomerate behind the hit series Call My Agent.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/brad-pitt-s-plan-b-sells-stake-to-french-mediawan">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/irIaXn2.QzCs/v1/1200x800.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Sara Marley</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Your Saturday UK Briefing: ITV Will Be Today's World Cup Winner</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Follow us at  @BloombergUK&nbsp;and on  Facebook, and&nbsp;wrap up your day with&nbsp;The Readout newsletter with Allegra Stratton.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/your-saturday-uk-briefing-itv-will-be-today-s-world-cup-winner">Read More</a>
+                    </p>
+                </div>
+            </div>
+        
+            <div class="news__item alt">
+                <div class="news__meta">
+                    <div class="news__meta-photo" style="background-image: url(&quot;https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i4Y2OvlC.pG4/v0/1200x812.jpg&quot;);"></div>
+                    <ul class="news__meta-details">
+                        <li class="news__meta-author">Sabah Meddings, Lucca De Paoli, Katie Linsell</li>
+                        <li class="news__meta-date">10-12-2022</li>
+                    </ul>
+                </div>
+                <div class="news__description">
+                    <h2 class="news__description-title">Asos Holds Talks With Lenders on Adding Restructuring Expert</h2>
+                    <h3 class="news__description-source">Bloomberg</h3>
+                    <p class="news__description-content">Struggling online fashion retailer Asos Plc and its lenders are discussing whether to hire a restructuring expert following the departure of its chief financial officer.</p>
+                    <p class="news__read-more">
+                        <a href="https://www.bloomberg.com/news/articles/2022-12-10/asos-holds-talks-with-lenders-on-adding-restructuring-expert">Read More</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+       
+        </main>
+        <footer>
+            <p class="copyright">
+                Copyright <a href="https://newsapi.org/">NewsAPI</a>
+            </p>
+        </footer>
+
+        <template id="sourceItemTemp"></template>
+
+        <template id="newsItemTemp"></template>
+
+        <!-- <script src="./index.js"></script> -->
+    
+
+</body></html>

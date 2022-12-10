@@ -49,6 +49,8 @@ class Sources {
 
   private drawFilterByName(data: Array<string>) {
     const sourcesNavContainer = document.querySelector('.sources-nav') as HTMLElement;
+    const sourcesCategoryContainer = document.querySelector('.sources-categories') as HTMLElement;
+
     data.forEach((item: string): void => {
       let div = document.createElement('div') as HTMLElement;
       div.classList.add('source__item', 'filter__btn');
@@ -56,6 +58,9 @@ class Sources {
       div.setAttribute('data-filter', item);
       div.addEventListener('click', (e: Event): void => {
         this.filterByName(item);
+        sourcesNavContainer.querySelector('.active')?.classList.remove('active');
+        sourcesCategoryContainer.querySelector('.active')?.classList.remove('active');
+        div.classList.add('active');
       });
       sourcesNavContainer.append(div);
     });
@@ -79,6 +84,8 @@ class Sources {
 
   private drawFilterByCategory(data: Array<string>) {
     const sourcesCategoryContainer = document.querySelector('.sources-categories') as HTMLElement;
+    const sourcesNavContainer = document.querySelector('.sources-nav') as HTMLElement;
+
     data.forEach((item: string): void => {
       let div = document.createElement('div') as HTMLElement;
       div.classList.add('source__item', 'filter__btn');
@@ -86,6 +93,9 @@ class Sources {
       div.setAttribute('data-filter', item);
       div.addEventListener('click', (e: Event): void => {
         this.filterByCategory(item);
+        sourcesNavContainer.querySelector('.active')?.classList.remove('active');
+        sourcesCategoryContainer.querySelector('.active')?.classList.remove('active');
+        div.classList.add('active');
       });
       sourcesCategoryContainer.append(div);
     });

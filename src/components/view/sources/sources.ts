@@ -2,14 +2,8 @@ import './sources.css';
 import { AppView, INewsSourceItem } from '../appView';
 
 class Sources {
-  // public view: AppView;
-
-  // constructor() {
-  //   this.view = new AppView();
-  // }
-
+  
   public draw(data: Array<INewsSourceItem>) {
-    // console.log('data  sources:', data);
     const fragment = document.createDocumentFragment();
     const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
     const sourcesContainer = document.querySelector('.sources') as HTMLElement;

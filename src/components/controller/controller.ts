@@ -2,7 +2,6 @@ import AppLoader from './appLoader';
 import { INewsSourcesData, INewsSourceArchive } from '../view/appView';
 import { EndPoint } from './loader';
 
-// interface INewsCallback
 class AppController extends AppLoader {
   public getSources(callback: (data?: INewsSourcesData) => void) {
     super.getResp(

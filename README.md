@@ -1,17 +1,16 @@
 # News Portal - агрегатор новостей разных СМИ
 
-Демо* - https://alexmegadrive.github.io/news-ts/demo
+Demo* - https://alexmegadrive.github.io/news-ts/demo
 
-## Функционал
-- получение данных по API от сервиса NewsAPI
-- код типизирован TypeScript-ом, типизированы все принимаемые от сервиса данные
-- динамическое создание фильтров по названию и категориям источников
-- возможность фильтрации статей по заголовкам
+*the page is for demonstration purposes, due to the fact that the NewsAPI service has introduced work restrictions for API keys with a free tariff. The application works correctly only when deployed and run on a local machine when accessed via localhost
 
-*страница носит демонстрационный характер, по причине того, что сервис NewsAPI ввел ограничения работы для API ключей с бесплатным тарифом. Приложение корректно работает только при развертывании и запуске на локальной машине при обращении через localhost
+## Features
+- getting API data from the NewsAPI service
+- the code and server response are TypeScript-typed
+- dynamic creation of filters by name and source categories
+- ability to filter articles by headings
 
-
-### Запуск
-- "npm install" для установки зависимостей
-- "npm run start" для запуска на локальной машине
-- "npm run build" для сборки проекта в папку dist
+### Run
+- "npm install" for installing dependencies
+- "npm run start" for running on localhost
+- "npm run build" for building to dist folder

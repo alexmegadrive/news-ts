@@ -1,4 +1,4 @@
-# News Portal - агрегатор новостей разных СМИ
+# News Portal - multiple sources news aggregator
 
 Demo* - https://alexmegadrive.github.io/news-ts/demo
 
